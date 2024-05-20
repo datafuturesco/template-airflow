@@ -53,7 +53,7 @@ jobs:
             rm -Rf ~/.aws
             mkdir ~/.aws
             touch ~/.aws/credentials
-            echo "[datafuturesco-dev]" >> ~/.aws/credentials
+            echo "[<YOUR_DEV_AWSPROFILE>]" >> ~/.aws/credentials
             echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
             echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
         with:
@@ -71,7 +71,7 @@ jobs:
             rm -Rf ~/.aws
             mkdir ~/.aws
             touch ~/.aws/credentials
-            echo "[datafuturesco-dev]" >> ~/.aws/credentials
+            echo "[<YOUR_DEV_AWSPROFILE>]" >> ~/.aws/credentials
             echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
             echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
         with:
@@ -89,7 +89,7 @@ jobs:
             rm -Rf ~/.aws
             mkdir ~/.aws
             touch ~/.aws/credentials
-            echo "[datafuturesco-prod]" >> ~/.aws/credentials
+            echo "[<YOUR_PROD_AWSPROFILE>]" >> ~/.aws/credentials
             echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
             echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
         with:
@@ -106,7 +106,7 @@ jobs:
             rm -Rf ~/.aws
             mkdir ~/.aws
             touch ~/.aws/credentials
-            echo "[datafuturesco-prod]" >> ~/.aws/credentials
+            echo "[<YOUR_PROD_AWSPROFILE>]" >> ~/.aws/credentials
             echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
             echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
         with:
