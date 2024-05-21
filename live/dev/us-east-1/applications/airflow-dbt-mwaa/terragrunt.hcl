@@ -24,25 +24,25 @@ locals {
 
 terraform {
   # This example pulls the newest for the specified branch. In this way you could have divergent code per branch.
-  source = "git@github.com:david-yurman/data-terragrunt-mwaa.git//airflow-mwaa?ref=main"
+  source = "<YOUR_TERRAGRUNT_SSH_GIT_LINK>"  #for eg. git@github.com:<your_organization>/data-terragrunt-mwaa.git//airflow-mwaa?ref=main
 }
 
 inputs = merge(
   {
     enabled            = true
     name               = "core" 
-    vpc_cidr           = "10.1.0.0/16"
-    source_cidr        = ["10.93.0.0/16"]
-    vpc_id             = "vpc-075ecfb13545152a6"
+    vpc_cidr           = "XX.XX.XX.XX/XX"
+    source_cidr        = ["XX.XX.XX.XX/XX"]
+    vpc_id             = "vpc-XXXXX"
     environment_class = "mw1.medium"
     security_group_ids = [
-      "sg-00fdb657390afa457",
-      "sg-0e03ceb8d89b25189",
-      "sg-039c0a8f494e82d33"
+      "sg-XXXXX",
+      "sg-XXXXX",
+      "sg-XXXXX"
     ]
     private_subnet_ids = [
-      "subnet-04757060ff0f3055a",
-      "subnet-096d47066a79cfcb4",
+      "subnet-XXXXX",
+      "subnet-XXXXX",
     ]
   }
 )
