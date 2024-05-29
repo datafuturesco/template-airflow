@@ -101,16 +101,6 @@ store your terraform code within a `modules` folder within the repo. Remember `l
 module code. No direct terraform should ever be stored in `./live`. You reference this code as a source
 in the manner displayed within `~/`
 
-#### Debugging Variables
-
-Since debugging the inheritance can be fairly difficult, you can run the below command. It will
-generate a `terragrunt-debug.tfvars.json` file at the `~/live/[ENV]/[REGION]/[MODULE]`
-path. This will contain all the values passed to the module (terraform) code.
-
-```commandline
-terragrunt run-all plan --terragrunt-debug
-```
-
 #### Changes to the template code
 
 As this repo provides a template for core-airflow deployment on AWS, before running the code you need to make
@@ -122,6 +112,16 @@ Files that needs to be updated:
 | default.hcl    | Give AWS account details such as account id, region, etc. Replace all `UPDATE ME` with proper values.                                                                                             |
 | terragrunt.hcl | This file contains configuration of AWS VPC, replace the `<YOUR_TERRAGRUNT_SSH_GIT_LINK>` with your terraform code git repo and all other VPC related values in their corresponding placeholders. |
 | account.hcl    | Replace `<YOUR_AWS_ACCOUNT_ID>` with proper value. Provide the AWS account on which you want to deploy the airflow.                                                                               |
+
+#### Debugging Variables
+
+Since debugging the inheritance can be fairly difficult, you can run the below command. It will
+generate a `terragrunt-debug.tfvars.json` file at the `~/live/[ENV]/[REGION]/[MODULE]`
+path. This will contain all the values passed to the module (terraform) code.
+
+```commandline
+terragrunt run-all plan --terragrunt-debug
+```
 
 #### Running & Testing Code
 

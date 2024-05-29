@@ -12,13 +12,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 env:
-  tf_version: "1.5.7"
-  tg_version: "0.53.2"
+  tf_version: '1.5.7'
+  tg_version: '0.53.2'
 jobs:
   ci-cd:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout"
+      - name: 'Checkout'
         uses: actions/checkout@main
       - name: Set env
         run: |
@@ -36,19 +36,19 @@ jobs:
 
       - name: create directory to pass ssh-agent socket
         if: ${{ (steps.changes.outputs.dev == 'true') || (steps.changes.outputs.prod == 'true') }}
-        run: "mkdir -p /home/runner/work/_temp/_github_workflow"
+        run: 'mkdir -p /home/runner/work/_temp/_github_workflow'
         shell: bash
       - uses: webfactory/ssh-agent@v0.7.0
         if: ${{ (steps.changes.outputs.dev == 'true') || (steps.changes.outputs.prod == 'true') }}
         with:
           ssh-private-key: ${{ secrets.GH_SSH_DEPOY_PRIVATE_KEY }}
-          ssh-auth-sock: "/home/runner/work/_temp/_github_workflow/ssh-agent.sock"
+          ssh-auth-sock: '/home/runner/work/_temp/_github_workflow/ssh-agent.sock'
 
       - name: DEV - Plan
         if: ${{ (steps.changes.outputs.dev == 'true') }}
         uses: gruntwork-io/terragrunt-action@v2
         env:
-          SSH_AUTH_SOCK: "/github/workflow/ssh-agent.sock"
+          SSH_AUTH_SOCK: '/github/workflow/ssh-agent.sock'
           INPUT_PRE_EXEC_1: |
             rm -Rf ~/.aws
             mkdir ~/.aws
@@ -60,13 +60,13 @@ jobs:
           tf_version: ${{ env.tf_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: live/dev
-          tg_command: "run-all plan -lock=false"
+          tg_command: 'run-all plan -lock=false'
 
       - name: DEV - Apply
         if: ${{ (steps.changes.outputs.dev == 'true') }}
         uses: gruntwork-io/terragrunt-action@v2
         env:
-          SSH_AUTH_SOCK: "/github/workflow/ssh-agent.sock"
+          SSH_AUTH_SOCK: '/github/workflow/ssh-agent.sock'
           INPUT_PRE_EXEC_1: |
             rm -Rf ~/.aws
             mkdir ~/.aws
@@ -78,13 +78,13 @@ jobs:
           tf_version: ${{ env.tf_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: live/dev
-          tg_command: "run-all apply -lock=false"
+          tg_command: 'run-all apply -lock=false'
 
       - name: PROD - Plan
         if: ${{ (steps.changes.outputs.prod == 'true') }}
         uses: gruntwork-io/terragrunt-action@v2
         env:
-          SSH_AUTH_SOCK: "/github/workflow/ssh-agent.sock"
+          SSH_AUTH_SOCK: '/github/workflow/ssh-agent.sock'
           INPUT_PRE_EXEC_1: |
             rm -Rf ~/.aws
             mkdir ~/.aws
@@ -96,12 +96,12 @@ jobs:
           tf_version: ${{ env.tf_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: live/prod
-          tg_command: "run-all plan"
+          tg_command: 'run-all plan'
       - name: PROD - Apply
         if: ${{ (steps.changes.outputs.prod == 'true') }}
         uses: gruntwork-io/terragrunt-action@v2
         env:
-          SSH_AUTH_SOCK: "/github/workflow/ssh-agent.sock"
+          SSH_AUTH_SOCK: '/github/workflow/ssh-agent.sock'
           INPUT_PRE_EXEC_1: |
             rm -Rf ~/.aws
             mkdir ~/.aws
@@ -113,4 +113,4 @@ jobs:
           tf_version: ${{ env.tf_version }}
           tg_version: ${{ env.tg_version }}
           tg_dir: live/prod
-          tg_command: "run-all apply"
+          tg_command: 'run-all apply'
