@@ -3,6 +3,6 @@
 # TODO - Set these values if you want to override the defaults.hcl values.
 locals {
   aws_account_id = "<YOUR_AWS_ACCOUNT_ID>"
-#  aws_profile    = ""  # This is for local testing only. The default value is: [aws-profile-prefix]-[environment]
+  aws_profile    = "<YOUR_PROD_AWSPROFILE>"  # This is for local testing only. The default value is: [aws-profile-prefix]-[environment]
 }
 
