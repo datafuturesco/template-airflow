@@ -113,6 +113,39 @@ Files that needs to be updated:
 | terragrunt.hcl | This file contains configuration of AWS VPC, replace the `<YOUR_TERRAGRUNT_SSH_GIT_LINK>` with your terraform code git repo and all other VPC related values in their corresponding placeholders. |
 | account.hcl    | Replace `<YOUR_AWS_ACCOUNT_ID>` with proper value. Provide the AWS account on which you want to deploy the airflow.                                                                               |
 
+#### Custom Requirements.txt file for installing dependencies
+
+The terraform source code provides an easy way to maintain the libraries and dependencies to be installed on our MWAA environment through requirements.txt file.
+We can define custom requirements.txt file with required libraries without version lock along with the constraint file at different levels - environment, region, or application.
+The variables defined in terraform code for these are commented in this template module, feel free to uncomment the ones you want to use.
+
+```text
+├── live/
+│   └── defaults.hcl
+│   └── dev/
+│      └── env.hcl
+|      └── sample_env_requirements.txt
+│      └── account.hcl
+│      └── us-east-1/
+│         └── region.hcl
+│         └── sample_region_requirements.txt
+│         └── applications/airflow-dbt-mwaa/
+│             └── sample_app_requirements.txt
+│             └── terragrunt.hcl
+```
+
+For example, if you want to define custom requirements in region level in dev environment, rename `sample_region_requirements.txt` to `requirements.txt`
+and in the `region.hcl` uncomment the lines corresponding to the variable `mwaa_dir_region_path` and also in the root `terragrunt.hcl`.
+
+The variables for custom requirements.txt file paths in different levels are defined in its corresponding hcl file:
+| Variable | Description | Defined in file |
+| ------------------- | ---------------------------------------------------------------------------------------|------------------ |
+| mwaa_dir_app_path | This variable defines path to custom requirements.txt file for application level. |terragrunt.hcl |
+| mwaa_dir_env_path | Defines custom requriements.txt file path applicable for environment (dev/prod) level. |env.hcl |
+| mwaa_dir_region_path| Defines custom requirements.txt file path for region level. |region.hcl |
+
+To install custom packages/dependencies at different level, rename the corresponding `sample_[LEVEL]_requirements.txt` file to `requirements.txt`.
+
 #### Debugging Variables
 
 Since debugging the inheritance can be fairly difficult, you can run the below command. It will

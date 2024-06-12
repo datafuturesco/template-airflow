@@ -20,6 +20,9 @@ include "root" {
 ###}
 ##
 locals {
+  # Uncomment this section if providing an app level requirements.txt
+  #current_dir = get_terragrunt_dir()
+  #mwaa_dir_app_path = "${local.current_dir}"
 }
 
 terraform {

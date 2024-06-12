@@ -1,0 +1,5 @@
+# uncomment to use this requirements file instead of the one privided in terragrunt source module at application level
+
+# --constraint https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.10.txt
+# pandas
+# apache-airflow-providers-slack

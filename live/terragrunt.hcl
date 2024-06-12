@@ -26,6 +26,10 @@ locals {
   terraform_locks_table_name = local.default_vars.locals.terraform_locks_table_name
   environment                = try(local.environment_vars.locals.environment, "")
   account_name               = "${local.platform}-${local.environment}"
+  # Define variables for requirements.txt paths at each level - uncomment variables according to your requirements file placement
+  #mwaa_dir_env_path   = "${find_in_parent_folders("dev")}"
+  #mwaa_dir_region_path = "${find_in_parent_folders("us-east-1")}"
+  #mwaa_dir_app_path    = "${find_in_parent_folders("applications/airflow-dbt-mwaa")}"
 }
 
 # Generate an AWS provider block

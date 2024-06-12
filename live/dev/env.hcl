@@ -4,4 +4,5 @@ locals {
   environment = "${basename(get_terragrunt_dir())}"
   max_workers = 5
   environment_class = "mw1.medium"
+  #mwaa_dir_env_path = "${get_terragrunt_dir()}"  #uncomment if providing environment level requirements
 }
